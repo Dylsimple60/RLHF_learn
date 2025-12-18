@@ -27,8 +27,12 @@ PPO和TRPO算法最大的不同就是在**如何控制策略更新的幅度**
 **如果用惩罚因子替代约束条件，TRPO优化问题可以表述为：**
 
 $$
-\underset{\theta}{\operatorname*{\mathrm{maximize}}}\hat{\mathbb{E}}_t\left[\frac{\pi_\theta(a_t\mid s_t)}{\pi_{\theta_{\mathrm{old}}}(a_t\mid s_t)}\hat{A}_t-\beta\operatorname{KL}[\pi_{\theta_{\mathrm{old}}}(\cdot\mid s_t),\pi_\theta(\cdot\mid s_t)]\right]
+\max_{\theta}\; \hat{\mathbb{E}}_t\Bigg[
+\frac{\pi_\theta(a_t\mid s_t)}{\pi_{\theta_{\text{old}}}(a_t\mid s_t)}\hat{A}_t
+-\beta\,\mathrm{KL}\!\left(\pi_{\theta_{\text{old}}}(\cdot\mid s_t)\,\|\,\pi_\theta(\cdot\mid s_t)\right)
+\Bigg]
 $$
+
 
 ---
 
