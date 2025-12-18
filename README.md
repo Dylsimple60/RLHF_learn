@@ -124,7 +124,7 @@ PPO 的奖励模型训练时直接优化奖励模型中以Transformer 为骨干�
 
 2.从 PPO 到 GRPO 的过渡思路
 
-![image.png](RLHF%E7%90%86%E8%AE%BA/image.png)
+![image.png](image.png)
 
 ### GRPO 的做法（上图下部分）
 
@@ -266,7 +266,7 @@ AEPO（Agentic Entropy-Balanced Policy Optimization）提出在两个阶段**平
 
 **AEPO 是第一个在 Rollout 和 Policy Update 双阶段中系统平衡熵的 Agentic RL 方法，显著提升了大模型在多轮工具调用任务中的探索能力与训练稳定性。**
 
-![image.png](RLHF%E7%90%86%E8%AE%BA/image%201.png)
+![image.png](image%201.png)
 
 ### 1.研究背景
 
