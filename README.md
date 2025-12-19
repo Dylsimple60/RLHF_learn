@@ -233,7 +233,20 @@ MoE 里面，router 会把每个 token 分配给不同 expert，这个决策本�
 
 先看定义：
 
-$$（s_i(\theta) = \left( \frac{\pi_\theta(o_i|q)}{\pi_{\mathrm{old}}(o_i|q)} \right)^{\frac{1}{|o_i|}} = \exp \left( \frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \log \frac{\pi_\theta(a_{i,t}|q, o_{i,<t})}{\pi_{\mathrm{old}}(a_{i,t}|q, o_{i,<t})} \right)）$$
+$$
+s_i(\theta)
+=
+\left(\frac{\pi_\theta(o_i\mid q)}{\pi_{\mathrm{old}}(o_i\mid q)}\right)^{1/|o_i|}
+=
+\exp\left(
+\frac{1}{|o_i|}
+\sum_{t=1}^{|o_i|}
+\log\left(
+\frac{\pi_\theta(a_{i,t}\mid q, o_{i,<t})}{\pi_{\mathrm{old}}(a_{i,t}\mid q, o_{i,<t})}
+\right)
+\right)
+$$
+
 
 
 
@@ -268,7 +281,7 @@ AEPO（Agentic Entropy-Balanced Policy Optimization）提出在两个阶段**平
 
 **Web Agent + Agentic RL 的大背景：**大模型本身是“静态知识库”，容易**幻觉**、**知识过期**，所以大家搞了 RAG，用检索来补充知识。但传统 RAG 大多是“一次性检索”，难以支持真正 **多轮、长链条的 Web 探索**。于是各种 Web Agent 出现，让 LLM 可以像人一样：反复搜索 → 打开网页 → 写代码 → 再搜索。
 
-### **2.现有 Entropy-driven Agentic RL 的问题**
+### 2.现有 Entropy-driven Agentic RL 的问题
 
 主流 agentic RL（如 ARPO 等）有一个核心套路：
 
