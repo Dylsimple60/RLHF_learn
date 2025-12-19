@@ -7,7 +7,7 @@ PPO：用clip函数限制新策略更新步幅，使策略梯度方法能够在�
 
 DPO：核心思想是跳过奖励模型训练，直接利用人类偏好对 来优化策略模型。
 
-GRPO（deepseek）：用组内平均回报值替代Crictic网络，极大降低大模型强化学习训练开销
+GRPO（deepseek）：用组内平均回报值替代Critic网络，极大降低大模型强化学习训练开销
 
 DAPO（字节）：提高clip上界、动态采样、token级梯度聚合、引入规则奖励、移除KL，优化了GRPO中的多个缺陷
 
@@ -233,11 +233,7 @@ MoE 里面，router 会把每个 token 分配给不同 expert，这个决策本�
 
 先看定义：
 
-$$
-s_i(\theta)
-=
-\left(\frac{\pi_\theta(o_i\mid q)}{\pi_{\mathrm{old}}(o_i\mid q)}\right)^{1/|o_i|}
-=
+$$s_i(\theta)=\left(\frac{\pi_\theta(o_i\mid q)}{\pi_{\mathrm{old}}(o_i\mid q)}\right)^{1/|o_i|}=
 \exp\left(
 \frac{1}{|o_i|}
 \sum_{t=1}^{|o_i|}
