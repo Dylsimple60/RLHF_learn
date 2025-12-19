@@ -234,21 +234,15 @@ MoE 里面，router 会把每个 token 分配给不同 expert，这个决策本�
 先看定义：
 
 $$
-
-s_i(\theta)=\left(\frac{\pi_\theta(o_i\mid q)}{\pi_{\mathrm{old}}(o_i\mid q)}\right)^{1/|o_i|}=
-\exp\left(
+s_i(\theta)=\left(\frac{\pi_\theta(o_i\mid q)}{\pi_{\mathrm{old}}(o_i\mid q)}\right)^{1/|o_i|}
+=\exp\left(
 \frac{1}{|o_i|}
 \sum_{t=1}^{|o_i|}
 \log\left(
 \frac{\pi_\theta(a_{i,t}\mid q, o_{i,<t})}{\pi_{\mathrm{old}}(a_{i,t}\mid q, o_{i,<t})}
 \right)
 \right)
-
 $$
-
-
-
-
 
 
 几点关键信息： $\frac{\pi_\theta(o_i|q)}{\pi_{\text{old}}(o_i|q)}$是**整条回答的概率比；**
