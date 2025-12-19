@@ -143,7 +143,8 @@ PPO 的奖励模型训练时直接优化奖励模型中以Transformer 为骨干�
 
 ### GRPO局限性
 
-重要性采样的本质是：我们希望在新的分布下计算期望，但数据却来自旧分布。在 PPO/GRPO 中，我们不会直接用新策略采样，而是先用旧策略生成数据（因为采样代价高），这一过程称为 **Rollout**。在更新参数时，我们需要修正两者的分布差异，这就是重要性采样的作用。定义每个 token 的重要性比为：$r_t=\frac{\pi_\theta(a_t|s_t)}{\pi_\theta(old)(a_t|s_t)}$，则 PPO/GRPO 的目标函数可写为：
+重要性采样的本质是：我们希望在新的分布下计算期望，但数据却来自旧分布。在 PPO/GRPO 中，我们不会直接用新策略采样，而是先用旧策略生成数据（因为采样代价高），这一过程称为 **Rollout**。在更新参数时，我们需要修正两者的分布差异，这就是重要性采样的作用。定义每个 token 的重要性比为： $r_t=\frac{\pi_\theta(a_t|s_t)}{\pi_\theta(old)(a_t|s_t)}$，则 PPO/GRPO 的目标函数可写为：
+
 $L^{clip}(\theta) = \mathbb{E}_t \left[
 \min(r_t A_t,\ \text{clip}(r_t, 1-\epsilon, 1+\epsilon) A_t)
 \right]$
@@ -163,9 +164,9 @@ DAPO 在 **clip 机制、采样策略、梯度聚合、奖励设计** 四个层�
 
 ### 1. Clip-Higher：提高 clip 上界（**非对称裁剪策略**）
 
-GRPO 中 clip 区间是对称的 $[1-\varepsilon, 1+\varepsilon]$。当 old policy 对某个 token 的概率很低，而该 token 的 advantage 又是正值（即 old model 恰好采样得非常好），此时当前 policy model 的上涨空间就会受到很大限制。
+GRPO 中 clip 区间是对称的  $[1-\varepsilon, 1+\varepsilon]$。当 old policy 对某个 token 的概率很低，而该 token 的 advantage 又是正值（即 old model 恰好采样得非常好），此时当前 policy model 的上涨空间就会受到很大限制。
 
-**DAPO做法：拉高上界 $\operatorname{clip}(r_{t}, 1-\varepsilon_{\text{low}}, 1+\varepsilon_{\text{high}})$**
+**DAPO做法：拉高上界**   $\operatorname{clip}(r_{t}, 1-\varepsilon_{\text{low}}, 1+\varepsilon_{\text{high}})$
 
 ---
 
