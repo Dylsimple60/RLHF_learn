@@ -164,7 +164,7 @@ DAPO 在 **clip 机制、采样策略、梯度聚合、奖励设计** 四个层�
 
 ### 1. Clip-Higher：提高 clip 上界（**非对称裁剪策略**）
 
-GRPO 中 clip 区间是对称的  $[1-\varepsilon, 1+\varepsilon]$。当 old policy 对某个 token 的概率很低，而该 token 的 advantage 又是正值（即 old model 恰好采样得非常好），此时当前 policy model 的上涨空间就会受到很大限制。DAPO做法：拉高上界： \mathrm{clip}(r_{t}, 1-\varepsilon_{\text{low}}, 1+\varepsilon_{\text{high}})
+GRPO 中 clip 区间是对称的  $[1-\varepsilon, 1+\varepsilon]$。当 old policy 对某个 token 的概率很低，而该 token 的 advantage 又是正值（即 old model 恰好采样得非常好），此时当前 policy model 的上涨空间就会受到很大限制。DAPO做法：拉高上界：  $\mathrm{clip}(r_t, 1-\varepsilon_{\mathrm{low}}, 1+\varepsilon_{\mathrm{high}})$
 
 
 ---
@@ -180,18 +180,18 @@ GRPO 中 clip 区间是对称的  $[1-\varepsilon, 1+\varepsilon]$。当 old pol
 ### 3. Token-Level Gradient Loss：token 级梯度聚合
 
 GRPO 中回答越长，每个 token 的梯度越被稀释，GRPO 的损失在回答级别聚合方式是：
-先对每个 sample 的所有 token 求平均；再对 所有sample 求平均 $\frac1G \sum_{i=1}^G \frac1{|o_i|} \sum_{t=1}^{|o_i|} L_{i,t}$
+先对每个 sample 的所有 token 求平均；再对 所有sample 求平均  $\frac1G \sum_{i=1}^G \frac1{|o_i|} \sum_{t=1}^{|o_i|} L_{i,t}$
 
 这意味着比如：第一个样本长度 200 token；第二个样本长度 10 token。在GRPO下
 
 - 第一个回答每个 token 的权重： $(1/200) \times (1/G)$
 - 第二个回答每个 token 的权重： $(1/10) \times (1/G)$
 
-**DAPO**做法：整个 batch 里的所有 token 统一做平均；$\frac1{\sum_{i=1}^G |o_i|} \sum_{i=1}^G \sum_{t=1}^{|o_i|} L_{i,t}$
+**DAPO**做法：整个 batch 里的所有 token 统一做平均； $\frac1{\sum_{i=1}^G |o_i|} \sum_{i=1}^G \sum_{t=1}^{|o_i|} L_{i,t}$
 
 在**DAPO**下
 
-- 总 token 数 = 210；每个 token 权重都是  $(1/210) \times (1/G)$
+- 总 token 数 = 210；每个 token 权重都是   $(1/210) \times (1/G)$
 
 ---
 
@@ -235,15 +235,10 @@ MoE 里面，router 会把每个 token 分配给不同 expert，这个决策本�
 
 $$
 s_i(\theta)
-= \Bigg(
-\frac{\pi_\theta(o_i|q)}{\pi_{\text{old}}(o_i|q)}
-\Bigg)^{\frac1{|o_i|}}
-= \exp\!\left(
-\frac1{|o_i|}\sum_{t=1}^{|o_i|}
-\log\frac{\pi_\theta(a_{i,t}|q,o_{i,<t})}
-{\pi_{\text{old}}(a_{i,t}|q,o_{i,<t})}
-\right)
+= \Bigg( \frac{\pi_\theta(o_i\mid q)}{\pi_{\text{old}}(o_i\mid q)} \Bigg)^{\frac{1}{|o_i|}}
+= \exp\!\left( \frac{1}{|o_i|}\sum_{t=1}^{|o_i|} \log\frac{\pi_\theta(a_{i,t}\mid q,o_{i,<t})}{\pi_{\text{old}}(a_{i,t}\mid q,o_{i,<t})} \right)
 $$
+
 
 几点关键信息：$\frac{\pi_\theta(o_i|q)}{\pi_{\text{old}}(o_i|q)}$是**整条回答的概率比；**
 
